@@ -63,4 +63,11 @@ public class TennisGameTest {
 		assertThat(tennisGame.getScore(), is(DEUCE));
 	}
 
+	@Test
+	public void scoreShouldBeDeuceWhenBothPlayersWinSevenPoints() {
+		firstPlayer.winsPoints(7);
+		secondPlayer.winsPoints(7);
+		assertThat(tennisGame.getScore(), is(DEUCE));
+	}
+
 }

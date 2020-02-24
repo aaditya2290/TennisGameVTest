@@ -18,7 +18,7 @@ public class TennisGame {
 		String gameScore;
 
 		if (isPlayerPointsEqual()) {
-			if (isFirstPlayerPointsEqualToPointsForDeuce()) {
+			if (isFirstPlayerPointsGreaterThanOrEqualToPointsForDeuce()) {
 				gameScore = DEUCE;
 			} else {
 				gameScore = firstPlayer.getScore() + ALL;
@@ -33,8 +33,8 @@ public class TennisGame {
 		return firstPlayer.getPoints() == secondPlayer.getPoints();
 	}
 
-	private boolean isFirstPlayerPointsEqualToPointsForDeuce() {
-		return firstPlayer.getPoints() == POINTS_FOR_DEUCE;
+	private boolean isFirstPlayerPointsGreaterThanOrEqualToPointsForDeuce() {
+		return firstPlayer.getPoints() >= POINTS_FOR_DEUCE;
 	}
 
 }
