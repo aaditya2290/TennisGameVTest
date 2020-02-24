@@ -2,8 +2,6 @@ package com.bnpp.kata.tennisgame;
 
 public class TennisGame {
 
-	private static final String LOVE_FIFTEEN = "Love Fifteen";
-	private static final String FIFTEEN_LOVE = "Fifteen Love";
 	private static final String LOVE_ALL = "Love All";
 	private Player firstPlayer;
 	private Player secondPlayer;
@@ -17,13 +15,10 @@ public class TennisGame {
 
 		String gameScore;
 
-		if (firstPlayer.getPoints() == 1 && secondPlayer.getPoints() == 0) {
-			gameScore = FIFTEEN_LOVE;
-		} else if (firstPlayer.getPoints() == 0
-				&& secondPlayer.getPoints() == 1) {
-			gameScore = LOVE_FIFTEEN;
-		} else {
+		if (firstPlayer.getPoints() == 0 && secondPlayer.getPoints() == 0) {
 			gameScore = LOVE_ALL;
+		} else {
+			gameScore = firstPlayer.getScore() + " " + secondPlayer.getScore();
 		}
 		return gameScore;
 	}
