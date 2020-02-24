@@ -25,12 +25,7 @@ public class TennisGame {
 		String gameScore;
 
 		if (isWin()) {
-			if (firstPlayer.isWinner()) {
-				gameScore = firstPlayer.getName() + WINS;
-			} else {
-				gameScore = secondPlayer.getName() + WINS;
-			}
-
+			gameScore = getNameOfWinningPlayer() + WINS;
 		} else if (isAdvantage()) {
 			gameScore = ADVANTAGE + getNameOfPlayerHavingAdvantage();
 		} else if (isDeuce()) {
@@ -142,6 +137,14 @@ public class TennisGame {
 
 	private String getNameOfPlayerHavingAdvantage() {
 		if (firstPlayer.isAdvantage()) {
+			return firstPlayer.getName();
+		} else {
+			return secondPlayer.getName();
+		}
+	}
+
+	private String getNameOfWinningPlayer() {
+		if (firstPlayer.isWinner()) {
 			return firstPlayer.getName();
 		} else {
 			return secondPlayer.getName();
