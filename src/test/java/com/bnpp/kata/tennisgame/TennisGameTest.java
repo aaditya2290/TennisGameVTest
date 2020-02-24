@@ -39,4 +39,11 @@ public class TennisGameTest {
 		assertThat(tennisGame.getScore(), is(LOVE_FIFTEEN));
 	}
 
+	@Test
+	public void scoreShouldBeFifteenAllWhenBothPlayersWinOnePoint() {
+		firstPlayer.winsPoint();
+		secondPlayer.winsPoint();
+		assertThat(tennisGame.getScore(), is("Fifteen All"));
+	}
+
 }
