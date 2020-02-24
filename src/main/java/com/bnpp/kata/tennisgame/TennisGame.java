@@ -2,6 +2,8 @@ package com.bnpp.kata.tennisgame;
 
 public class TennisGame {
 
+	private static final int POINTS_FOR_DEUCE = 3;
+	private static final String DEUCE = "Deuce";
 	private static final String ALL = " All";
 	private Player firstPlayer;
 	private Player secondPlayer;
@@ -16,10 +18,9 @@ public class TennisGame {
 		String gameScore;
 
 		if (isPlayerPointsEqual()) {
-			if (firstPlayer.getPoints() == 3) {
-				gameScore = "Deuce";
+			if (firstPlayer.getPoints() == POINTS_FOR_DEUCE) {
+				gameScore = DEUCE;
 			} else {
-
 				gameScore = firstPlayer.getScore() + ALL;
 			}
 		} else {
