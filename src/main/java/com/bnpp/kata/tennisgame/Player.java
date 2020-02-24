@@ -7,6 +7,7 @@ public class Player {
 	private String name;
 	private int points;
 	private boolean isAdvantage;
+	private boolean isWinner;
 
 	public Player(String name) {
 		this.name = name;
@@ -32,16 +33,24 @@ public class Player {
 		return points;
 	}
 
-	private void setPoints(int points) {
-		this.points = points;
-	}
-
 	public boolean isAdvantage() {
 		return isAdvantage;
 	}
 
 	public void setAdvantage(boolean isAdvantage) {
 		this.isAdvantage = isAdvantage;
+	}
+
+	public boolean isWinner() {
+		return isWinner;
+	}
+
+	public void setWinner(boolean isWinner) {
+		this.isWinner = isWinner;
+	}
+
+	private void setPoints(int points) {
+		this.points = points;
 	}
 
 }
