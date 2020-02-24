@@ -2,6 +2,9 @@ package com.bnpp.kata.tennisgame;
 
 public class TennisGame {
 
+	private static final int POINTS_DIFFERENCE_FOR_WIN = 2;
+	private static final int POINTS_FOR_WIN = 4;
+	private static final String WINS = " Wins";
 	private static final int POINTS_DIFFERENCE_FOR_ADVANTAGE = 1;
 	private static final String ADVANTAGE = "Advantage ";
 	private static final int POINTS_FOR_DEUCE = 3;
@@ -19,9 +22,9 @@ public class TennisGame {
 
 		String gameScore;
 
-		if (firstPlayer.getPoints() == 4
-				&& firstPlayer.getPoints() - secondPlayer.getPoints() >= 2) {
-			gameScore = firstPlayer.getName() + " Wins";
+		if (firstPlayer.getPoints() == POINTS_FOR_WIN
+				&& firstPlayer.getPoints() - secondPlayer.getPoints() >= POINTS_DIFFERENCE_FOR_WIN) {
+			gameScore = firstPlayer.getName() + WINS;
 		} else if (isAdvantage()) {
 			gameScore = ADVANTAGE + getNameOfPlayerHavingAdvantage();
 		} else if (isDeuce()) {
