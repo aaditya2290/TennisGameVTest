@@ -20,9 +20,19 @@ public class TennisGameTest {
 	@Test
 	public void scoreShouldBeFifteenLoveWhenFirstPlayerWinsOnePoint() {
 		Player firstPlayer = new Player();
-		tennisGame = new TennisGame(firstPlayer);
+		Player secondPlayer = new Player();
+		tennisGame = new TennisGame(firstPlayer, secondPlayer);
 		firstPlayer.winsPoint();
 		assertThat(tennisGame.getScore(), is(FIFTEEN_LOVE));
+	}
+
+	@Test
+	public void scoreShouldBeLoveFifteenWhenSecondPlayerWinsOnePoint() {
+		Player firstPlayer = new Player();
+		Player secondPlayer = new Player();
+		tennisGame = new TennisGame(firstPlayer, secondPlayer);
+		secondPlayer.winsPoint();
+		assertThat(tennisGame.getScore(), is("Love Fifteen"));
 	}
 
 }
