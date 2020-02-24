@@ -19,10 +19,12 @@ public class TennisGame {
 
 		String gameScore;
 
-		if (isAdvantageFirstPlayer()) {
-			gameScore = ADVANTAGE + firstPlayer.getName();
-		} else if (isAdvantageSecondPlayer()) {
-			gameScore = ADVANTAGE + secondPlayer.getName();
+		if (isAdvantage()) {
+			if (firstPlayer.isAdvantage()) {
+				gameScore = ADVANTAGE + firstPlayer.getName();
+			} else {
+				gameScore = ADVANTAGE + secondPlayer.getName();
+			}
 		} else if (isPlayerPointsEqual()) {
 			if (isFirstPlayerPointsGreaterThanOrEqualToPointsForDeuce()) {
 				gameScore = DEUCE;
@@ -43,9 +45,15 @@ public class TennisGame {
 		return firstPlayer.getPoints() >= POINTS_FOR_DEUCE;
 	}
 
+	private boolean isAdvantage() {
+		return isAdvantageFirstPlayer() || isAdvantageSecondPlayer();
+	}
+
 	private boolean isAdvantageSecondPlayer() {
-		return isFirstPlayerPointsGreaterThanOrEqualToPointsForDeuce()
+		boolean isAdvantage = isFirstPlayerPointsGreaterThanOrEqualToPointsForDeuce()
 				&& isSecondPlayerLeadEqualToPointsDifferenceForAdvantage();
+		secondPlayer.setAdvantage(isAdvantage);
+		return isAdvantage;
 	}
 
 	private boolean isSecondPlayerLeadEqualToPointsDifferenceForAdvantage() {
@@ -53,8 +61,10 @@ public class TennisGame {
 	}
 
 	private boolean isAdvantageFirstPlayer() {
-		return isSecondPlayerPointsGreaterThanOrEqualToPointsForDeuce()
+		boolean isAdvantage = isSecondPlayerPointsGreaterThanOrEqualToPointsForDeuce()
 				&& isFirstPlayerLeadEqualToPointsDifferenceForAdvantage();
+		firstPlayer.setAdvantage(isAdvantage);
+		return isAdvantage;
 	}
 
 	private boolean isFirstPlayerLeadEqualToPointsDifferenceForAdvantage() {
