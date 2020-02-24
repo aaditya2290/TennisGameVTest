@@ -79,4 +79,12 @@ public class TennisGameTest {
 				is(ADVANTAGE + secondPlayer.getName()));
 	}
 
+	@Test
+	public void scoreShouldBeAdvantageSecondPlayerWhenFirstPlayerWinsTenPointsAndSecondPlayerWinsElevenPoints() {
+		firstPlayer.winsPoints(10);
+		secondPlayer.winsPoints(11);
+		assertThat(tennisGame.getScore(),
+				is(ADVANTAGE + secondPlayer.getName()));
+	}
+
 }
