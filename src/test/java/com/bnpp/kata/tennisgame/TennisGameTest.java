@@ -20,8 +20,8 @@ public class TennisGameTest {
 
 	@Before
 	public void setUp() {
-		firstPlayer = new Player();
-		secondPlayer = new Player();
+		firstPlayer = new Player("Pete Sampras");
+		secondPlayer = new Player("Andre Agassi");
 		tennisGame = new TennisGame(firstPlayer, secondPlayer);
 	}
 
@@ -68,6 +68,14 @@ public class TennisGameTest {
 		firstPlayer.winsPoints(7);
 		secondPlayer.winsPoints(7);
 		assertThat(tennisGame.getScore(), is(DEUCE));
+	}
+
+	@Test
+	public void scoreShouldBeAdvantageSecondPlayerWhenFirstPlayerWinsThreePointsAndSecondPlayerWinsFourPoints() {
+		firstPlayer.winsPoints(3);
+		secondPlayer.winsPoints(4);
+		assertThat(tennisGame.getScore(),
+				is("Advantage " + secondPlayer.getName()));
 	}
 
 }

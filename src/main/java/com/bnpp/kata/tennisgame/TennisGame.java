@@ -17,7 +17,10 @@ public class TennisGame {
 
 		String gameScore;
 
-		if (isPlayerPointsEqual()) {
+		if (firstPlayer.getPoints() == POINTS_FOR_DEUCE
+				&& secondPlayer.getPoints() - firstPlayer.getPoints() == 1) {
+			gameScore = "Advantage " + secondPlayer.getName();
+		} else if (isPlayerPointsEqual()) {
 			if (isFirstPlayerPointsGreaterThanOrEqualToPointsForDeuce()) {
 				gameScore = DEUCE;
 			} else {
