@@ -15,11 +15,15 @@ public class TennisGame {
 
 		String gameScore;
 
-		if (firstPlayer.getPoints() == secondPlayer.getPoints()) {
+		if (isPlayerPointsEqual()) {
 			gameScore = firstPlayer.getScore() + ALL;
 		} else {
 			gameScore = firstPlayer.getScore() + " " + secondPlayer.getScore();
 		}
 		return gameScore;
+	}
+
+	private boolean isPlayerPointsEqual() {
+		return firstPlayer.getPoints() == secondPlayer.getPoints();
 	}
 }
