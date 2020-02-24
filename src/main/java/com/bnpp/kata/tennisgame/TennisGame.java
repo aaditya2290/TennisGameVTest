@@ -22,10 +22,7 @@ public class TennisGame {
 
 		String gameScore;
 
-		if (secondPlayer.getPoints() == POINTS_FOR_WIN
-				&& secondPlayer.getPoints() - firstPlayer.getPoints() >= POINTS_DIFFERENCE_FOR_WIN
-				|| secondPlayer.getPoints() > POINTS_FOR_WIN
-				&& secondPlayer.getPoints() - firstPlayer.getPoints() == POINTS_DIFFERENCE_FOR_WIN) {
+		if (isSecondPlayerWins()) {
 			gameScore = secondPlayer.getName() + WINS;
 		} else if (isFirstPlayerWins()) {
 			gameScore = firstPlayer.getName() + WINS;
@@ -39,6 +36,29 @@ public class TennisGame {
 			gameScore = firstPlayer.getScore() + " " + secondPlayer.getScore();
 		}
 		return gameScore;
+	}
+
+	private boolean isSecondPlayerWins() {
+		return isSecondPlayerPointsEqualToPointsForWin()
+				&& isSecondPlayerLeadGreaterThanOrEqualToPointsDifferenceForWin()
+				|| isSecondPlayerPointsGreaterThanPointsForWin()
+				&& isSecondPlayerLeadEqualToPointsDifferenceForWin();
+	}
+
+	private boolean isSecondPlayerLeadEqualToPointsDifferenceForWin() {
+		return secondPlayer.getPoints() - firstPlayer.getPoints() == POINTS_DIFFERENCE_FOR_WIN;
+	}
+
+	private boolean isSecondPlayerPointsGreaterThanPointsForWin() {
+		return secondPlayer.getPoints() > POINTS_FOR_WIN;
+	}
+
+	private boolean isSecondPlayerLeadGreaterThanOrEqualToPointsDifferenceForWin() {
+		return secondPlayer.getPoints() - firstPlayer.getPoints() >= POINTS_DIFFERENCE_FOR_WIN;
+	}
+
+	private boolean isSecondPlayerPointsEqualToPointsForWin() {
+		return secondPlayer.getPoints() == POINTS_FOR_WIN;
 	}
 
 	private boolean isFirstPlayerWins() {
