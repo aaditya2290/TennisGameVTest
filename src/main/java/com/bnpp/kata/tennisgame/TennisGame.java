@@ -19,8 +19,7 @@ public class TennisGame {
 
 		String gameScore;
 
-		if (firstPlayer.getPoints() >= POINTS_FOR_DEUCE
-				&& secondPlayer.getPoints() - firstPlayer.getPoints() == POINTS_DIFFERENCE_FOR_ADVANTAGE) {
+		if (isAdvantageSecondPlayer()) {
 			gameScore = ADVANTAGE + secondPlayer.getName();
 		} else if (isPlayerPointsEqual()) {
 			if (isFirstPlayerPointsGreaterThanOrEqualToPointsForDeuce()) {
@@ -40,6 +39,15 @@ public class TennisGame {
 
 	private boolean isFirstPlayerPointsGreaterThanOrEqualToPointsForDeuce() {
 		return firstPlayer.getPoints() >= POINTS_FOR_DEUCE;
+	}
+
+	private boolean isAdvantageSecondPlayer() {
+		return isFirstPlayerPointsGreaterThanOrEqualToPointsForDeuce()
+				&& isSecondPlayerLeadEqualToPointsDifferenceForAdvantage();
+	}
+
+	private boolean isSecondPlayerLeadEqualToPointsDifferenceForAdvantage() {
+		return secondPlayer.getPoints() - firstPlayer.getPoints() == POINTS_DIFFERENCE_FOR_ADVANTAGE;
 	}
 
 }
