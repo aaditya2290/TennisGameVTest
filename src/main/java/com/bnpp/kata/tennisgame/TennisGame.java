@@ -21,16 +21,19 @@ public class TennisGame {
 
 		if (isAdvantage()) {
 			gameScore = ADVANTAGE + getNameOfPlayerHavingAdvantage();
+		} else if (isDeuce()) {
+			gameScore = DEUCE;
 		} else if (isPlayerPointsEqual()) {
-			if (isFirstPlayerPointsGreaterThanOrEqualToPointsForDeuce()) {
-				gameScore = DEUCE;
-			} else {
-				gameScore = firstPlayer.getScore() + ALL;
-			}
+			gameScore = firstPlayer.getScore() + ALL;
 		} else {
 			gameScore = firstPlayer.getScore() + " " + secondPlayer.getScore();
 		}
 		return gameScore;
+	}
+
+	private boolean isDeuce() {
+		return isPlayerPointsEqual()
+				&& isFirstPlayerPointsGreaterThanOrEqualToPointsForDeuce();
 	}
 
 	private boolean isPlayerPointsEqual() {
