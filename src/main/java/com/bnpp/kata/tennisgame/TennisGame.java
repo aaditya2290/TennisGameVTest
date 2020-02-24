@@ -2,6 +2,7 @@ package com.bnpp.kata.tennisgame;
 
 public class TennisGame {
 
+	private static final String LOVE_FIFTEEN = "Love Fifteen";
 	private static final String FIFTEEN_LOVE = "Fifteen Love";
 	private static final String LOVE_ALL = "Love All";
 	private Player firstPlayer;
@@ -24,7 +25,7 @@ public class TennisGame {
 				gameScore = FIFTEEN_LOVE;
 			} else if (firstPlayer.getPoints() == 0
 					&& secondPlayer.getPoints() == 1) {
-				gameScore = "Love Fifteen";
+				gameScore = LOVE_FIFTEEN;
 			} else {
 				gameScore = LOVE_ALL;
 
