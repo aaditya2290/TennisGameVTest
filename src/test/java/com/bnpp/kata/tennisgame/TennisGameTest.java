@@ -8,12 +8,20 @@ import org.junit.Test;
 public class TennisGameTest {
 
 	private static final String LOVE_ALL = "Love All";
-	TennisGame tennisGame;
+	private TennisGame tennisGame;
 
 	@Test
 	public void scoreShouldBeLoveAllBeforeTennisGameBegins() {
 		tennisGame = new TennisGame();
 		assertThat(tennisGame.getScore(), is(LOVE_ALL));
+	}
+
+	@Test
+	public void scoreShouldBeFifteenLoveWhenFirstPlayerWinsOnePoint() {
+		Player firstPlayer = new Player();
+		tennisGame = new TennisGame(firstPlayer);
+		firstPlayer.winsPoint();
+		assertThat(tennisGame.getScore(), is("Fifteen Love"));
 	}
 
 }
