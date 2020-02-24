@@ -8,9 +8,6 @@ public class TennisGame {
 	private Player firstPlayer;
 	private Player secondPlayer;
 
-	public TennisGame() {
-	}
-
 	public TennisGame(Player firstPlayer, Player secondPlayer) {
 		this.firstPlayer = firstPlayer;
 		this.secondPlayer = secondPlayer;
@@ -20,16 +17,11 @@ public class TennisGame {
 
 		String gameScore;
 
-		if (firstPlayer != null && secondPlayer != null) {
-			if (firstPlayer.getPoints() == 1 && secondPlayer.getPoints() == 0) {
-				gameScore = FIFTEEN_LOVE;
-			} else if (firstPlayer.getPoints() == 0
-					&& secondPlayer.getPoints() == 1) {
-				gameScore = LOVE_FIFTEEN;
-			} else {
-				gameScore = LOVE_ALL;
-
-			}
+		if (firstPlayer.getPoints() == 1 && secondPlayer.getPoints() == 0) {
+			gameScore = FIFTEEN_LOVE;
+		} else if (firstPlayer.getPoints() == 0
+				&& secondPlayer.getPoints() == 1) {
+			gameScore = LOVE_FIFTEEN;
 		} else {
 			gameScore = LOVE_ALL;
 		}
