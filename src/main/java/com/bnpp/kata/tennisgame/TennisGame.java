@@ -19,7 +19,10 @@ public class TennisGame {
 
 		String gameScore;
 
-		if (isAdvantage()) {
+		if (firstPlayer.getPoints() == 4
+				&& firstPlayer.getPoints() - secondPlayer.getPoints() >= 2) {
+			gameScore = firstPlayer.getName() + " Wins";
+		} else if (isAdvantage()) {
 			gameScore = ADVANTAGE + getNameOfPlayerHavingAdvantage();
 		} else if (isDeuce()) {
 			gameScore = DEUCE;

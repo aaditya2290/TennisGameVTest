@@ -94,4 +94,11 @@ public class TennisGameTest {
 		assertThat(tennisGame.getScore(), is(ADVANTAGE + firstPlayer.getName()));
 	}
 
+	@Test
+	public void scoreShouldBeFirstPlayerWinsWhenFirstPlayerWinsFourPointsAndSecondPlayerWinsOnePoint() {
+		firstPlayer.winsPoints(4);
+		secondPlayer.winsPoints(1);
+		assertThat(tennisGame.getScore(), is(firstPlayer.getName() + " Wins"));
+	}
+
 }
