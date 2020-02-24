@@ -5,6 +5,8 @@ import java.util.Map;
 
 public class PointsToScoreMapper {
 
+	private static final String FORTY = "Forty";
+	private static final String THIRTY = "Thirty";
 	private static final String FIFTEEN = "Fifteen";
 	private static final String LOVE = "Love";
 	private static final Map<Integer, String> pointsToScore = new HashMap<Integer, String>() {
@@ -12,8 +14,8 @@ public class PointsToScoreMapper {
 		{
 			put(0, LOVE);
 			put(1, FIFTEEN);
-			put(2, "Thirty");
-			put(3, "Forty");
+			put(2, THIRTY);
+			put(3, FORTY);
 		}
 	};
 
