@@ -8,6 +8,7 @@ import org.junit.Test;
 
 public class TennisGameTest {
 
+	private static final String ADVANTAGE = "Advantage ";
 	private static final String DEUCE = "Deuce";
 	private static final String FORTY_THIRTY = "Forty Thirty";
 	private static final String FIFTEEN_ALL = "Fifteen All";
@@ -75,7 +76,7 @@ public class TennisGameTest {
 		firstPlayer.winsPoints(3);
 		secondPlayer.winsPoints(4);
 		assertThat(tennisGame.getScore(),
-				is("Advantage " + secondPlayer.getName()));
+				is(ADVANTAGE + secondPlayer.getName()));
 	}
 
 }
