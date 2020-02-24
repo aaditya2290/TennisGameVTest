@@ -23,7 +23,9 @@ public class TennisGame {
 		String gameScore;
 
 		if (isFirstPlayerPointsEqualToPointsForWin()
-				&& isFirstPlayerLeadGreaterThanOrEqualToPointsDifferenceForWin()) {
+				&& isFirstPlayerLeadGreaterThanOrEqualToPointsDifferenceForWin()
+				|| firstPlayer.getPoints() > POINTS_FOR_WIN
+				&& firstPlayer.getPoints() - secondPlayer.getPoints() == POINTS_DIFFERENCE_FOR_WIN) {
 			gameScore = firstPlayer.getName() + WINS;
 		} else if (isAdvantage()) {
 			gameScore = ADVANTAGE + getNameOfPlayerHavingAdvantage();
