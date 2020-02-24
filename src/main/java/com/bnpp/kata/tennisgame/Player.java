@@ -10,12 +10,20 @@ public class Player {
 		points++;
 	}
 
+	public void winsPoints(int points) {
+		setPoints(points);
+	}
+
 	public String getScore() {
 		return PointsToScoreMapper.getScore(points);
 	}
 
 	public int getPoints() {
 		return points;
+	}
+
+	private void setPoints(int points) {
+		this.points = points;
 	}
 
 }
