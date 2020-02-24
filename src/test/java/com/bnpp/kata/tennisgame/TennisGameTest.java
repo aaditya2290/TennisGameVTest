@@ -55,4 +55,11 @@ public class TennisGameTest {
 		assertThat(tennisGame.getScore(), is(FORTY_THIRTY));
 	}
 
+	@Test
+	public void scoreShouldBeDeuceWhenBothPlayersWinThreePoints() {
+		firstPlayer.winsPoints(3);
+		secondPlayer.winsPoints(3);
+		assertThat(tennisGame.getScore(), is("Deuce"));
+	}
+
 }

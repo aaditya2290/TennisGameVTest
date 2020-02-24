@@ -16,7 +16,12 @@ public class TennisGame {
 		String gameScore;
 
 		if (isPlayerPointsEqual()) {
-			gameScore = firstPlayer.getScore() + ALL;
+			if (firstPlayer.getPoints() == 3) {
+				gameScore = "Deuce";
+			} else {
+
+				gameScore = firstPlayer.getScore() + ALL;
+			}
 		} else {
 			gameScore = firstPlayer.getScore() + " " + secondPlayer.getScore();
 		}
