@@ -27,10 +27,7 @@ public class TennisGame {
 
 		String gameScore;
 
-		if (firstPlayer.getPoints() > POINTS_FOR_WIN
-				&& firstPlayer.getPoints() - secondPlayer.getPoints() > POINTS_DIFFERENCE_FOR_WIN
-				|| secondPlayer.getPoints() > POINTS_FOR_WIN
-				&& secondPlayer.getPoints() - firstPlayer.getPoints() > POINTS_DIFFERENCE_FOR_WIN) {
+		if (isInvalid()) {
 			throw new InvalidPointsException(PLAYER_POINTS_ARE_INVALID);
 		} else if (isWin()) {
 			gameScore = getNameOfWinningPlayer() + WINS;
@@ -45,6 +42,21 @@ public class TennisGame {
 		}
 
 		return gameScore;
+	}
+
+	private boolean isInvalid() {
+		return isFirstPlayerPointsGreaterThanPointsForWin()
+				&& isFirstPlayerLeadGreaterThanPointsDifferenceForWin()
+				|| isSecondPlayerPointsGreaterThanPointsForWin()
+				&& isSecondPlayerLeadGreaterThanPointsDifferenceForWin();
+	}
+
+	private boolean isSecondPlayerLeadGreaterThanPointsDifferenceForWin() {
+		return secondPlayer.getPoints() - firstPlayer.getPoints() > POINTS_DIFFERENCE_FOR_WIN;
+	}
+
+	private boolean isFirstPlayerLeadGreaterThanPointsDifferenceForWin() {
+		return firstPlayer.getPoints() - secondPlayer.getPoints() > POINTS_DIFFERENCE_FOR_WIN;
 	}
 
 	private boolean isWin() {
