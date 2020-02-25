@@ -4,6 +4,7 @@ import com.bnpp.kata.tennisgame.exceptions.InvalidPointsException;
 
 public class TennisGame {
 
+	private static final String PLAYER_POINTS_ARE_INVALID = "Player points are invalid";
 	private static final String WINS = " Wins";
 	private static final String ADVANTAGE = "Advantage ";
 	private static final String DEUCE = "Deuce";
@@ -30,7 +31,7 @@ public class TennisGame {
 				&& firstPlayer.getPoints() - secondPlayer.getPoints() > POINTS_DIFFERENCE_FOR_WIN
 				|| secondPlayer.getPoints() > POINTS_FOR_WIN
 				&& secondPlayer.getPoints() - firstPlayer.getPoints() > POINTS_DIFFERENCE_FOR_WIN) {
-			throw new InvalidPointsException("Player points are invalid");
+			throw new InvalidPointsException(PLAYER_POINTS_ARE_INVALID);
 		} else if (isWin()) {
 			gameScore = getNameOfWinningPlayer() + WINS;
 		} else if (isAdvantage()) {
