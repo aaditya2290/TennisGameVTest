@@ -4,7 +4,11 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import com.bnpp.kata.tennisgame.exceptions.InvalidPointsException;
 
 public class TennisGameTest {
 
@@ -20,6 +24,9 @@ public class TennisGameTest {
 	private Player firstPlayer;
 	private Player secondPlayer;
 
+	@Rule
+	public ExpectedException exceptionRule = ExpectedException.none();
+
 	@Before
 	public void setUp() {
 		firstPlayer = new Player("Pete Sampras");
@@ -28,52 +35,60 @@ public class TennisGameTest {
 	}
 
 	@Test
-	public void scoreShouldBeLoveAllBeforeTennisGameBegins() {
+	public void scoreShouldBeLoveAllBeforeTennisGameBegins()
+			throws InvalidPointsException {
 		assertThat(tennisGame.getScore(), is(LOVE_ALL));
 	}
 
 	@Test
-	public void scoreShouldBeFifteenLoveWhenFirstPlayerWinsOnePoint() {
+	public void scoreShouldBeFifteenLoveWhenFirstPlayerWinsOnePoint()
+			throws InvalidPointsException {
 		firstPlayer.winsPoint();
 		assertThat(tennisGame.getScore(), is(FIFTEEN_LOVE));
 	}
 
 	@Test
-	public void scoreShouldBeLoveFifteenWhenSecondPlayerWinsOnePoint() {
+	public void scoreShouldBeLoveFifteenWhenSecondPlayerWinsOnePoint()
+			throws InvalidPointsException {
 		secondPlayer.winsPoint();
 		assertThat(tennisGame.getScore(), is(LOVE_FIFTEEN));
 	}
 
 	@Test
-	public void scoreShouldBeFifteenAllWhenBothPlayersWinOnePoint() {
+	public void scoreShouldBeFifteenAllWhenBothPlayersWinOnePoint()
+			throws InvalidPointsException {
 		firstPlayer.winsPoint();
 		secondPlayer.winsPoint();
 		assertThat(tennisGame.getScore(), is(FIFTEEN_ALL));
 	}
 
 	@Test
-	public void scoreShouldBeFortyThirtyWhenFirstPlayerWinsThreePointsAndSecondPlayerWinsTwoPoints() {
+	public void scoreShouldBeFortyThirtyWhenFirstPlayerWinsThreePointsAndSecondPlayerWinsTwoPoints()
+			throws InvalidPointsException {
 		firstPlayer.winsPoints(3);
 		secondPlayer.winsPoints(2);
 		assertThat(tennisGame.getScore(), is(FORTY_THIRTY));
 	}
 
 	@Test
-	public void scoreShouldBeDeuceWhenBothPlayersWinThreePoints() {
+	public void scoreShouldBeDeuceWhenBothPlayersWinThreePoints()
+			throws InvalidPointsException {
 		firstPlayer.winsPoints(3);
 		secondPlayer.winsPoints(3);
 		assertThat(tennisGame.getScore(), is(DEUCE));
 	}
 
 	@Test
-	public void scoreShouldBeDeuceWhenBothPlayersWinSevenPoints() {
+	public void scoreShouldBeDeuceWhenBothPlayersWinSevenPoints()
+			throws InvalidPointsException {
 		firstPlayer.winsPoints(7);
 		secondPlayer.winsPoints(7);
 		assertThat(tennisGame.getScore(), is(DEUCE));
 	}
 
 	@Test
-	public void scoreShouldBeAdvantageSecondPlayerWhenFirstPlayerWinsThreePointsAndSecondPlayerWinsFourPoints() {
+	public void scoreShouldBeAdvantageSecondPlayerWhenFirstPlayerWinsThreePointsAndSecondPlayerWinsFourPoints()
+			throws InvalidPointsException {
 		firstPlayer.winsPoints(3);
 		secondPlayer.winsPoints(4);
 		assertThat(tennisGame.getScore(),
@@ -81,7 +96,8 @@ public class TennisGameTest {
 	}
 
 	@Test
-	public void scoreShouldBeAdvantageSecondPlayerWhenFirstPlayerWinsTenPointsAndSecondPlayerWinsElevenPoints() {
+	public void scoreShouldBeAdvantageSecondPlayerWhenFirstPlayerWinsTenPointsAndSecondPlayerWinsElevenPoints()
+			throws InvalidPointsException {
 		firstPlayer.winsPoints(10);
 		secondPlayer.winsPoints(11);
 		assertThat(tennisGame.getScore(),
@@ -89,31 +105,47 @@ public class TennisGameTest {
 	}
 
 	@Test
-	public void scoreShouldBeAdvantageFirstPlayerWhenFirstPlayerWinsSixPointsAndSecondPlayerWinsFivePoints() {
+	public void scoreShouldBeAdvantageFirstPlayerWhenFirstPlayerWinsSixPointsAndSecondPlayerWinsFivePoints()
+			throws InvalidPointsException {
 		firstPlayer.winsPoints(6);
 		secondPlayer.winsPoints(5);
 		assertThat(tennisGame.getScore(), is(ADVANTAGE + firstPlayer.getName()));
 	}
 
 	@Test
-	public void scoreShouldBeFirstPlayerWinsWhenFirstPlayerWinsFourPointsAndSecondPlayerWinsOnePoint() {
+	public void scoreShouldBeFirstPlayerWinsWhenFirstPlayerWinsFourPointsAndSecondPlayerWinsOnePoint()
+			throws InvalidPointsException {
 		firstPlayer.winsPoints(4);
 		secondPlayer.winsPoints(1);
 		assertThat(tennisGame.getScore(), is(firstPlayer.getName() + WINS));
 	}
 
 	@Test
-	public void scoreShouldBeFirstPlayerWinsWhenFirstPlayerWinsTenPointsAndSecondPlayerWinsEightPoints() {
+	public void scoreShouldBeFirstPlayerWinsWhenFirstPlayerWinsTenPointsAndSecondPlayerWinsEightPoints()
+			throws InvalidPointsException {
 		firstPlayer.winsPoints(10);
 		secondPlayer.winsPoints(8);
 		assertThat(tennisGame.getScore(), is(firstPlayer.getName() + WINS));
 	}
 
 	@Test
-	public void scoreShouldBeSecondPlayerWinsWhenFirstPlayerWinsThreePointsAndSecondPlayerWinsFivePoints() {
+	public void scoreShouldBeSecondPlayerWinsWhenFirstPlayerWinsThreePointsAndSecondPlayerWinsFivePoints()
+			throws InvalidPointsException {
 		firstPlayer.winsPoints(3);
 		secondPlayer.winsPoints(5);
 		assertThat(tennisGame.getScore(), is(secondPlayer.getName() + WINS));
+	}
+
+	@Test
+	public void scoreShouldThrowInvalidPointsExceptionWhenFirstPlayerWinsSevenPointsAndSecondPlayerWinsTenPoints()
+			throws InvalidPointsException {
+
+		exceptionRule.expect(InvalidPointsException.class);
+		exceptionRule.expectMessage("Player points are invalid");
+
+		firstPlayer.winsPoints(7);
+		secondPlayer.winsPoints(10);
+		tennisGame.getScore();
 	}
 
 }

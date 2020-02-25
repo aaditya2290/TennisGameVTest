@@ -1,5 +1,7 @@
 package com.bnpp.kata.tennisgame;
 
+import com.bnpp.kata.tennisgame.exceptions.InvalidPointsException;
+
 public class TennisGame {
 
 	private static final String WINS = " Wins";
@@ -20,11 +22,16 @@ public class TennisGame {
 		this.secondPlayer = secondPlayer;
 	}
 
-	public String getScore() {
+	public String getScore() throws InvalidPointsException {
 
 		String gameScore;
 
-		if (isWin()) {
+		if (firstPlayer.getPoints() > POINTS_FOR_WIN
+				&& firstPlayer.getPoints() - secondPlayer.getPoints() > POINTS_DIFFERENCE_FOR_WIN
+				|| secondPlayer.getPoints() > POINTS_FOR_WIN
+				&& secondPlayer.getPoints() - firstPlayer.getPoints() > POINTS_DIFFERENCE_FOR_WIN) {
+			throw new InvalidPointsException("Player points are invalid");
+		} else if (isWin()) {
 			gameScore = getNameOfWinningPlayer() + WINS;
 		} else if (isAdvantage()) {
 			gameScore = ADVANTAGE + getNameOfPlayerHavingAdvantage();
@@ -35,6 +42,7 @@ public class TennisGame {
 		} else {
 			gameScore = firstPlayer.getScore() + " " + secondPlayer.getScore();
 		}
+
 		return gameScore;
 	}
 
