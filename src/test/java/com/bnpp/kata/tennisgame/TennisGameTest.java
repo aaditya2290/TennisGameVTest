@@ -12,6 +12,7 @@ import com.bnpp.kata.tennisgame.exceptions.InvalidPointsException;
 
 public class TennisGameTest {
 
+	private static final String PLAYER_POINTS_ARE_INVALID = "Player points are invalid";
 	private static final String WINS = " Wins";
 	private static final String ADVANTAGE = "Advantage ";
 	private static final String DEUCE = "Deuce";
@@ -141,7 +142,7 @@ public class TennisGameTest {
 			throws InvalidPointsException {
 
 		exceptionRule.expect(InvalidPointsException.class);
-		exceptionRule.expectMessage("Player points are invalid");
+		exceptionRule.expectMessage(PLAYER_POINTS_ARE_INVALID);
 
 		firstPlayer.winsPoints(7);
 		secondPlayer.winsPoints(10);
